@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/javacore2/bai8")
+@RequestMapping("/springjava1/javacore2/bai8")
 public class Bai8Controller {
     @Autowired
     private Bai8Service bai8Service;

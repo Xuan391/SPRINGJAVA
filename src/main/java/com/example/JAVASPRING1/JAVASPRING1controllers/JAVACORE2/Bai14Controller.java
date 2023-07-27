@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/javacore2/bai14")
+@RequestMapping("/springjava1/javacore2/bai14")
 public class Bai14Controller {
     @Autowired
     private Bai14Service bai14Service;

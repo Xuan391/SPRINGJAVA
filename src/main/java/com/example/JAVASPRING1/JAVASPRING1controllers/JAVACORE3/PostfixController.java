@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/javacore3/postfix")
+@RequestMapping("/springjava1/javacore3/postfix")
 public class PostfixController {
     @Autowired
     private PostfixService postfixService;

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/javacore4/bangcong")
+@RequestMapping("/springjava1/javacore4/bangcong")
 public class BangCongController {
     @Autowired
     private BangCongService bangCongService;

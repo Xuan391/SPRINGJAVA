@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/javacore2/bai4")
+@RequestMapping("/springjava1/javacore2/bai4")
 public class Bai4Controller {
     @Autowired
     private Bai4Service bai4Service;

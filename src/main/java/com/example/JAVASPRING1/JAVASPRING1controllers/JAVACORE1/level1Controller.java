@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/level1")
+@RequestMapping("/springjava1/level1")
 public class level1Controller {
     @Autowired
     private Level1Service level1Service;

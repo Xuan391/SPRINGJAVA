@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/javacore2/bai1")
+@RequestMapping("/springjava1/javacore2/bai1")
 public class Bai1Controller {
     @Autowired
     private Bai1Service bai1Service;

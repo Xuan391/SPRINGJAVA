@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/javacore2/bai9")
+@RequestMapping("/springjava1/javacore2/bai9")
 public class Bai9Controller {
     @Autowired
     private Bai9Service bai9Service;

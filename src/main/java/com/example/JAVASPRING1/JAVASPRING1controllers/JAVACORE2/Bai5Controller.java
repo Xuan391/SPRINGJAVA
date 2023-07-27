@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/javacore2/bai5")
+@RequestMapping("/springjava1/javacore2/bai5")
 public class Bai5Controller {
     @Autowired
     private Bai5Service bai5Service;
