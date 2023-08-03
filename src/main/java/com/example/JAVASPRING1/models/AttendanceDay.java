@@ -9,7 +9,7 @@ public class AttendanceDay {
     private List<String> shifts;
     private double amount;
 
-
+    public AttendanceDay() {};
     public AttendanceDay(int date, double hours, List<String> shifts, double amount) {
         this.date = date;
         this.hours = hours;
