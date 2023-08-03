@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AttendanceDay {
-    private int date;
+    private String date;
     private double hours;
     private List<String> shifts;
     private double amount;
 
     public AttendanceDay() {};
-    public AttendanceDay(int date, double hours, List<String> shifts, double amount) {
+    public AttendanceDay(String date, double hours, List<String> shifts, double amount) {
         this.date = date;
         this.hours = hours;
         this.shifts = shifts;
         this.amount =amount;
     }
 
-    public int getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

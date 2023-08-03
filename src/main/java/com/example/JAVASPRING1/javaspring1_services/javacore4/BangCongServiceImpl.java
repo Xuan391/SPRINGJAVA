@@ -86,13 +86,13 @@ public class BangCongServiceImpl implements BangCongService{
         Workbook workbook = new XSSFWorkbook(fis);
         Sheet sheet = workbook.getSheetAt(0); // Trang tính đầu tiên trong tệp Excel
 
-        Map<Integer, Integer> map1 = new HashMap<>();
-        Map<Integer,String> map2 = new HashMap<>();
-        Map<String, Integer> map3 = new HashMap<>();
+        Map<Integer, Integer> map1 = new HashMap<>(); // lưu ngày , index cột
+        Map<Integer,String> map2 = new HashMap<>(); // lưu index cột, shift name
+        Map<String, Integer> map3 = new HashMap<>(); // lưu shift name, cột chỉ giá tiền
 
         boolean isFirstDate = true;
         int index = 0; // đánh dấu số thứ tự chỉ cột đầu tiên trong tháng.
-        int indexQ = 0;
+        int indexQ = 0; // đánh dấu số thứ tự chỉ cột tổng lương
         // Loop1 : row 3
         Row row3 = sheet.getRow(3);
         int day = 0;
@@ -102,12 +102,13 @@ public class BangCongServiceImpl implements BangCongService{
                 day = (int) cell.getNumericCellValue();
                 if(isFirstDate == true){
                     index = i;
-                    indexQ = index -1;
+                    indexQ = index - 1;
                     isFirstDate = false;
                 }
             }
             map1.put(i,day);
         }
+        int firstDay = map1.get(index);
 //        System.out.println(map1);
 
         //Loop2 :row5
@@ -143,6 +144,12 @@ public class BangCongServiceImpl implements BangCongService{
 
         //loop4: duyet nhan vien
         for (int i =6; i<=9; i++){
+
+            Row row6 = sheet.getRow(0);
+            int month = (int) row6.getCell(0).getNumericCellValue();
+            int year = (int) row6.getCell(1).getNumericCellValue();
+//            System.out.println(month+"/"+year);
+
             Row row = sheet.getRow(i);
             String name = row.getCell(2).getStringCellValue();
             double compareAmount = row.getCell(indexQ).getNumericCellValue();
@@ -154,7 +161,20 @@ public class BangCongServiceImpl implements BangCongService{
             double hour = 0.0;
             double amount = 0.0;
             List<String> dayShifts = new ArrayList<>();
+            boolean hasEncounteredFirstDay = false;
             for (int j = index; j <= row.getLastCellNum(); j++) {
+                int indexDay = map1.get(j);
+                if (firstDay != 1) {
+                    if (indexDay == 1 && !hasEncounteredFirstDay) {
+                        if (month == 12) {
+                            month = 1;
+                            year++;
+                        } else {
+                            month++;
+                        }
+                        hasEncounteredFirstDay = true;
+                    }
+                }
                 Cell cell = row.getCell(j);
                 if(cell!= null) {
                     if (cell.getCellTypeEnum() == CellType.NUMERIC && cell.getNumericCellValue() > 0.0) {
@@ -180,7 +200,7 @@ public class BangCongServiceImpl implements BangCongService{
                             amount += hourCell * money; //---
                         }
 
-                        attendanceDay.setDate(date);
+                        attendanceDay.setDate(date+"/"+month+"/"+year);
                         attendanceDay.setHours(hour);
                         attendanceDay.setAmount(amount);
                         attendanceDay.setShifts(dayShifts);
@@ -198,6 +218,7 @@ public class BangCongServiceImpl implements BangCongService{
             }
             employees.add(employee);
         }
+
         workbook.close();
         fis.close();
 
